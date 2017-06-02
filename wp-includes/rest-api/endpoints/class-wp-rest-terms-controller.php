@@ -772,6 +772,12 @@ class WP_REST_Terms_Controller extends WP_REST_Controller {
 			'about'      => array(
 				'href' => rest_url( sprintf( 'wp/v2/taxonomies/%s', $this->taxonomy ) ),
 			),
+			'children'	=> array(
+				'href' => rest_url(
+					add_query_arg( 'parent', $term->term_id, rtrim( $base, '/') )
+				),
+				'embeddable' => true,
+			),
 		);
 
 		if ( $term->parent ) {
